@@ -5,21 +5,28 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node src/server.js",
-    "start:dev": "nodemon src/server.js"
+    "start": "node src/utils/server.js",
+    "start:dev": "nodemon src/utils/server.js"
   },
   "nodemonConfig": {
-    "watch": ["src"],
+    "watch": [
+      "src"
+    ],
     "ext": "js,json",
     "exec": "node src/server.js"
   },
   "dependencies": {
-    "express": "4.19.2",
+    "@apollo/server": "^4.11.2",
+    "bcrypt": "^5.1.1",
     "dotenv": "16.4.5",
-    "langchain": "0.1.37"
+    "express": "4.19.2",
+    "langchain": "0.1.37",
+    "mongoose": "^8.8.2",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@types/node": "20.12.7",
+
     "nodemon": "3.1.0"
   }
 }
