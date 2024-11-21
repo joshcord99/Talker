@@ -3,17 +3,15 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
 import dotenv from 'dotenv';
-
 import { typeDefs, resolvers } from './schemas/index.js';
-
 import db from './config/connection.js';
-import { authenticateToken } from './utils/api/auth.js';
 import { fileURLToPath } from 'url';
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -24,27 +22,21 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
-
+  
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
+  
+  app.use('/graphql', expressMiddleware(server));
 
-
-  app.use(
-    '/graphql',
-    expressMiddleware(server, {
-      context: async ({ req }) => authenticateToken({ req }),
-    })
-  );
-
-
+  // if we're in production, serve client/dist as static assets
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../../client/dist')));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
-
+  
   db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
   app.listen(PORT, () => {
