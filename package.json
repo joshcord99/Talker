@@ -1,0 +1,21 @@
+{
+  "name": "please-sit",
+  "version": "1.0.0",
+  "description": "Can't afford therapy? Need someone to talk to? You have come to the right place. Talk with an AI Therapist to figure out your daily issues.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/dist/server.js",
+    "start:dev": "concurrently \"cd server && npm run watch\" \"wait-on tcp:3001 && cd client && npm run dev\"",
+    "server": "cd server && npm start",
+    "server:dev": "cd server && npm run dev",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client:build": "cd client && npm run build",
+    "client:dev": "cd client && npm run dev",
+    "seed": "cd server && npm run seed",
+    "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
+    "render-build": "npm install && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

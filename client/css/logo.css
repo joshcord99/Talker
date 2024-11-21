@@ -1,0 +1,14 @@
+.title {
+  height: 150px;
+  background-image: url("../src/assets/zen.jpg");
+  background-size: cover;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  margin: 10px;
+  position: relative; 
+  left:  550px;
+}
