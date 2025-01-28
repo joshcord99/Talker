@@ -47,8 +47,8 @@ userDataSchema.pre("save", async function (next) {
   next();
 });
 
-// Compile the schema into a model
+
 const userData = mongoose.model("UserData", userDataSchema);
 
-// Export the model
+
 export default userData;

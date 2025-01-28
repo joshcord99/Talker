@@ -21,7 +21,6 @@ export const authenticateToken = ({ req }) => {
     console.log('Invalid token');
   }
 
-  // Return the request object
   return req;
 };
 
