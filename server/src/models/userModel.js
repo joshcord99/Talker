@@ -2,6 +2,19 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
 
 const userDataSchema = new Schema({
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   age: {
     type: Number,
     required: true,
@@ -17,6 +30,7 @@ const userDataSchema = new Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -24,6 +38,7 @@ const userDataSchema = new Schema({
   },
   userEmotion: {
     type: String,
+    required: true,
     default: "neutral",
   },
   conversations: [
@@ -47,8 +62,6 @@ userDataSchema.pre("save", async function (next) {
   next();
 });
 
-
 const userData = mongoose.model("UserData", userDataSchema);
-
 
 export default userData;

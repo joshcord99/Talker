@@ -15,6 +15,11 @@ const LOGIN_USER = gql`
         username
         firstName
         lastName
+        email
+        age
+        gender
+        dob
+        userEmotion
       }
     }
   }
@@ -104,8 +109,28 @@ function Logo() {
     e.preventDefault();
     setErrorMessage("");
 
+    if (!createAccountData.firstName.trim()) {
+      setErrorMessage("First name is required.");
+      return;
+    }
+
+    if (!createAccountData.lastName.trim()) {
+      setErrorMessage("Last name is required.");
+      return;
+    }
+
+    if (!createAccountData.email.trim()) {
+      setErrorMessage("Email is required.");
+      return;
+    }
+
     if (!validateEmail(createAccountData.email)) {
       setErrorMessage("Email must contain an '@' symbol.");
+      return;
+    }
+
+    if (!createAccountData.username.trim()) {
+      setErrorMessage("Username is required.");
       return;
     }
 
@@ -127,6 +152,7 @@ function Logo() {
           input: {
             firstName: createAccountData.firstName,
             lastName: createAccountData.lastName,
+            email: createAccountData.email,
             username: createAccountData.username,
             password: createAccountData.password,
             age: 25,
@@ -263,6 +289,7 @@ function Logo() {
               name="username"
               value={createAccountData.username}
               onChange={handleCreateAccountChange}
+              required
             />
           </div>
 
@@ -274,6 +301,7 @@ function Logo() {
               name="firstName"
               value={createAccountData.firstName}
               onChange={handleCreateAccountChange}
+              required
             />
           </div>
 
@@ -285,6 +313,7 @@ function Logo() {
               name="lastName"
               value={createAccountData.lastName}
               onChange={handleCreateAccountChange}
+              required
             />
           </div>
 
@@ -292,10 +321,11 @@ function Logo() {
             <label className="form-label">Email</label>
             <input
               className="form-input"
-              type="text"
+              type="email"
               name="email"
               value={createAccountData.email}
               onChange={handleCreateAccountChange}
+              required
             />
           </div>
 
@@ -308,6 +338,7 @@ function Logo() {
                 name="password"
                 value={createAccountData.password}
                 onChange={handleCreateAccountChange}
+                required
               />
               <button
                 type="button"

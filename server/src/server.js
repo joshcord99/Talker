@@ -3,6 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import path from 'path';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/connection.js';
 import { fileURLToPath } from 'url';
@@ -23,6 +24,13 @@ const server = new ApolloServer({
 
 const startApolloServer = async () => {
   await server.start();
+  
+  // Enable CORS for all routes
+  app.use(cors({
+    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    credentials: true
+  }));
+  
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use('/graphql', expressMiddleware(server,{

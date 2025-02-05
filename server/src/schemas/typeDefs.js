@@ -5,7 +5,10 @@ const typeDefs = `
 
 type userData {
   _id: ID!
-  age: Int
+  firstName: String!
+  lastName: String!
+  email: String!
+  age: Int!
   gender: String!
   dob: String!
   username: String!
@@ -16,6 +19,9 @@ type userData {
 }
   
   input ProfileInput {
+  firstName: String!
+  lastName: String!
+  email: String!
   username: String! 
   password: String! 
   age: Int!
