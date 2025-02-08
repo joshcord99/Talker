@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/personal.css";
+import "../styles/personal.css";
 import ConversationBox from "../components/ConversationBox";
 import UserProfile from "../components/UserProfile";
 

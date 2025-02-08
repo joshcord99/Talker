@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { aiResponseText } from "../utils/mutations";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import "../css/personal.css";
+import "../styles/personal.css";
 
 function ConversationBox() {
   const [conversation, setConversation] = useState([]);

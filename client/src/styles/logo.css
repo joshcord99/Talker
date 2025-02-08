@@ -1,0 +1,41 @@
+.title {
+  height: 150px;
+  background-image: url("../assets/zen.jpg");
+  background-size: cover;
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.title h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  margin: 10px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}

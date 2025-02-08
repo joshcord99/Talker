@@ -39,14 +39,14 @@ h2 {
 }
 
 .login-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
   color: white;
 }
 
 .signup-btn {
   background: white;
-  color: #667eea;
-  border: 2px solid #667eea;
+  color: #0ea5e9;
+  border: 2px solid #0ea5e9;
 }
 
 .home-btn:hover {
@@ -59,6 +59,6 @@ h2 {
 }
 
 .signup-btn:hover {
-  background: #667eea;
+  background: #0ea5e9;
   color: white;
 }

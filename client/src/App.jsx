@@ -1,16 +1,14 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../pages/footer";
-import Banner from "../pages/banner";
+import Footer from "./pages/Footer";
+import Banner from "./pages/Banner";
 
 function App() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  const isAuthPage =
-    location.pathname === "/login" || location.pathname === "/createaccount";
 
   return (
     <div>
-      {(isHomePage || isAuthPage) && <Banner />}
+      {isHomePage && <Banner />}
       <main>
         <Outlet />
       </main>

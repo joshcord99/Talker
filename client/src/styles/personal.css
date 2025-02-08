@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
   color: white;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -88,7 +88,7 @@
 }
 
 .message.user .message-content {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -138,7 +138,7 @@
 }
 
 .message-input:focus {
-  border-color: #667eea;
+  border-color: #0ea5e9;
 }
 
 .message-input:disabled {
@@ -148,7 +148,7 @@
 
 .send-button {
   padding: 12px 24px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -159,7 +159,7 @@
 
 .send-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 8px rgba(74, 222, 128, 0.3);
 }
 
 .send-button:disabled {
@@ -170,7 +170,7 @@
 
 .btn2 button {
   padding: 15px 30px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -204,7 +204,7 @@
 }
 
 .profile-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
   color: white;
   padding: 20px;
   text-align: center;
@@ -332,7 +332,7 @@
 .ai-response blockquote {
   margin: 12px 0;
   padding: 8px 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #0ea5e9;
   background-color: #f8f9fa;
   font-style: italic;
 }
@@ -368,7 +368,7 @@
 }
 
 .ai-response a {
-  color: #667eea;
+  color: #0ea5e9;
   text-decoration: none;
 }
 

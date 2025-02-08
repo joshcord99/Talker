@@ -1,4 +1,4 @@
-import "../css/personal.css";
+import "../styles/personal.css";
 
 function UserProfile({ user }) {
   if (!user) {
@@ -16,36 +16,36 @@ function UserProfile({ user }) {
           <span>
             {user.firstName && user.lastName
               ? `${user.firstName} ${user.lastName}`
-              : "Willy Wonka"}
+              : "Not provided"}
           </span>
         </div>
         <div className="profile-item">
           <label>Username:</label>
-          <span>{user.username || "chocolate_factory_owner"}</span>
+          <span>{user.username || "Not provided"}</span>
         </div>
         <div className="profile-item">
           <label>Email:</label>
-          <span>{user.email || "willy@wonkachocolate.com"}</span>
+          <span>{user.email || "Not provided"}</span>
         </div>
         <div className="profile-item">
           <label>Date of Birth:</label>
           <span>
             {user.dob
               ? new Date(user.dob).toLocaleDateString()
-              : "October 10, 1932"}
+              : "Not provided"}
           </span>
         </div>
         <div className="profile-item">
           <label>Age:</label>
-          <span>{user.age || "91"}</span>
+          <span>{user.age || "Not provided"}</span>
         </div>
         <div className="profile-item">
           <label>Gender:</label>
-          <span>{user.gender || "Male"}</span>
+          <span>{user.gender || "Not provided"}</span>
         </div>
         <div className="profile-item">
           <label>Current Goal:</label>
-          <span>{user.userEmotion || "Spreading joy through chocolate"}</span>
+          <span>{user.userEmotion || "Not provided"}</span>
         </div>
       </div>
     </div>

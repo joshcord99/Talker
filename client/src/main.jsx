@@ -8,11 +8,11 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import App from "./App";
-import Error from "../pages/Error.jsx";
-import Home from "../pages/Home.jsx";
-import CreateAccount from "../pages/CreateAccount.jsx";
-import Login from "../pages/Login.jsx";
-import Dashboard from "../pages/Dashboard.jsx";
+import Error from "./pages/Error.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
+import CreateAccount from "./pages/CreateAccount.jsx";
+import Login from "./pages/Login.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:3001/graphql",
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
+        element: <LandingPage />,
       },
       {
         path: "/createaccount",

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { CREATE_USER } from "../utils/mutations";
-import "../css/createaccount.css";
+import "../styles/createaccount.css";
 
 const CreateAccount = () => {
   const [CreateAccountData, setCreateAccountData] = useState({
@@ -102,6 +102,7 @@ const CreateAccount = () => {
             name="username"
             value={CreateAccountData.username}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -113,6 +114,7 @@ const CreateAccount = () => {
             name="firstName"
             value={CreateAccountData.firstName}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -124,6 +126,7 @@ const CreateAccount = () => {
             name="lastName"
             value={CreateAccountData.lastName}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -131,10 +134,11 @@ const CreateAccount = () => {
           <label className="form-label">Email</label>
           <input
             className="form-input"
-            type="text"
+            type="email"
             name="email"
             value={CreateAccountData.email}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -147,6 +151,7 @@ const CreateAccount = () => {
               name="password"
               value={CreateAccountData.password}
               onChange={handleChange}
+              required
             />
             <button
               type="button"
@@ -201,6 +206,7 @@ const CreateAccount = () => {
             name="birthday"
             value={CreateAccountData.birthday}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="bttn">

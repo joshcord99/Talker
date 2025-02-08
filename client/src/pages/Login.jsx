@@ -1,22 +1,8 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { gql } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
-import "../css/createaccount.css";
-
-const LOGIN_USER = gql`
-  mutation LoginUser($username: String!, $password: String!) {
-    loginUser(username: $username, password: $password) {
-      token
-      user {
-        _id
-        username
-        firstName
-        lastName
-      }
-    }
-  }
-`;
+import { LOGIN_USER } from "../utils/mutations";
+import "../styles/createaccount.css";
 
 const Login = () => {
   const [loginData, setLoginData] = useState({
