@@ -13,9 +13,10 @@ import LandingPage from "./pages/LandingPage.jsx";
 import CreateAccount from "./pages/CreateAccount.jsx";
 import Login from "./pages/Login.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import { config } from "./config/config.js";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:3001/graphql",
+  uri: config.api.graphqlUrl,
 });
 
 const authLink = setContext((_, { headers }) => {
