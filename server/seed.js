@@ -154,6 +154,7 @@ const seedDatabase = async () => {
       sampleUsers.map(async (user) => ({
         ...user,
         password: await hashPassword(user.password),
+        dob: new Date(user.dob),
         conversations: [],
         date: new Date(),
       }))

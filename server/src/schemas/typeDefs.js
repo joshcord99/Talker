@@ -1,6 +1,8 @@
 const typeDefs = `
   type Query {
   _: Boolean
+  hasLoggedToday(userId: ID!): Boolean
+  getDailyLogs(userId: ID!): [DailyLog!]
 }
 
 type userData {
@@ -42,9 +44,19 @@ type OpenAiResponse {
   createdAt: String!
 }
 
+type DailyLog {
+  _id: ID!
+  userId: ID!
+  emotion: String!
+  logDate: String!
+  notes: String!
+}
+
 type Mutation {
   createUser(input: ProfileInput!): Auth
   loginUser(username: String!, password: String!): Auth
+  updateUserEmotion(userId: ID!, userEmotion: String!): userData
+  createDailyLog(userId: ID!, emotion: String!, notes: String): DailyLog
   getTherapyResponse(userText: String!): OpenAiResponse
 }
 `;

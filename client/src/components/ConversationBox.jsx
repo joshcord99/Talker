@@ -4,10 +4,11 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import "../styles/personal.css";
 
-function ConversationBox() {
+function ConversationBox({ onClose }) {
   const [conversation, setConversation] = useState([]);
   const [userMessage, setUserMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showCloseConfirm, setShowCloseConfirm] = useState(false);
   const [sendMessage] = useMutation(aiResponseText);
 
   const handleSubmit = async (event) => {
@@ -74,8 +75,35 @@ function ConversationBox() {
     );
   };
 
+  const handleCloseClick = () => {
+    if (conversation.length > 0) {
+      setShowCloseConfirm(true);
+    } else {
+      onClose();
+    }
+  };
+
+  const handleConfirmClose = () => {
+    setShowCloseConfirm(false);
+    onClose();
+  };
+
+  const handleCancelClose = () => {
+    setShowCloseConfirm(false);
+  };
+
   return (
     <div className="conversation-container">
+      <div className="chat-header">
+        <h3>AI Therapy Session</h3>
+        <button
+          onClick={handleCloseClick}
+          className="chat-close-btn"
+          type="button"
+        >
+          ×
+        </button>
+      </div>
       <div className="chat-messages">
         {conversation.length === 0 && (
           <div className="welcome-message">
@@ -114,6 +142,26 @@ function ConversationBox() {
           Send
         </button>
       </form>
+
+      {showCloseConfirm && (
+        <div className="close-confirm-overlay">
+          <div className="close-confirm-modal">
+            <h3>Are you sure you want to end this session?</h3>
+            <p>Your conversation will be lost if you close now.</p>
+            <div className="confirm-buttons">
+              <button
+                onClick={handleConfirmClose}
+                className="confirm-close-btn"
+              >
+                Yes, End Session
+              </button>
+              <button onClick={handleCancelClose} className="cancel-close-btn">
+                Continue Session
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

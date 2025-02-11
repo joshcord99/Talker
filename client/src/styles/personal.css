@@ -49,6 +49,42 @@
   flex-direction: column;
 }
 
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #4ade80 0%, #0ea5e9 100%);
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.chat-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.chat-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
 .chat-messages {
   flex: 1;
   padding: 20px;
@@ -195,12 +231,11 @@
 }
 
 .profile-sidebar {
-  width: 300px;
+  width: 100%;
   background: white;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .profile-header {
@@ -257,16 +292,38 @@
   margin: 0;
 }
 
-.dashboard-layout {
-  display: flex;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+.dashboard-container {
+  position: relative;
+  width: 100%;
   min-height: 600px;
 }
 
+.profile-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+}
+
+.chat-section {
+  position: absolute;
+  left: 320px;
+  top: 0;
+  right: 370px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logs-section {
+  position: absolute;
+  right: 50px;
+  top: 0;
+  width: 350px;
+}
+
 .main-content {
-  flex: 1;
+  flex: 2;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -284,6 +341,26 @@
   width: 100%;
   height: 600px;
   margin: 0;
+}
+
+.chat-and-logs-container {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  height: 600px;
+}
+
+.chat-and-logs-container .conversation-container {
+  flex: 2;
+  min-width: 0;
+}
+
+.chat-and-logs-container .daily-logs-container {
+  flex: 1;
+  min-width: 300px;
+  margin-top: 0;
+  height: 600px;
+  overflow-y: auto;
 }
 
 .ai-response {
@@ -374,4 +451,353 @@
 
 .ai-response a:hover {
   text-decoration: underline;
+}
+
+.emotion-prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.emotion-prompt {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.emotion-prompt h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.emotion-prompt p {
+  margin: 10px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.emotion-prompt strong {
+  color: #0ea5e9;
+  font-weight: 600;
+}
+
+.emotion-prompt-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.start-conversation-btn {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.start-conversation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+}
+
+.close-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.emotion-dropdown {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+}
+
+.emotion-dropdown:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.daily-log-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.daily-log-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.daily-log-modal h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.daily-log-modal p {
+  margin: 0 0 25px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.daily-log-modal .form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.daily-log-modal label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.notes-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.notes-textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+
+.modal-buttons {
+  margin-top: 25px;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #4ade80 0%, #16a34a 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+}
+
+.daily-logs-container {
+  width: 100%;
+  padding: 20px;
+  background: white;
+  border-radius: 15px;
+  border: 2px solid #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 550px;
+  overflow-y: auto;
+}
+
+.daily-logs-container h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 1.3rem;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.no-logs {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+
+.logs-list {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.log-item {
+  padding: 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.log-date {
+  font-weight: 500;
+}
+
+.log-time {
+  color: #999;
+}
+
+.log-emotion {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.log-notes {
+  color: #666;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.current-emotion {
+  font-weight: 500;
+  color: #0ea5e9;
+  padding: 4px 8px;
+  background: rgba(14, 165, 233, 0.1);
+  border-radius: 4px;
+}
+
+.close-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.close-confirm-modal {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.close-confirm-modal h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.close-confirm-modal p {
+  margin: 0 0 25px 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.confirm-close-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.confirm-close-btn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
+
+.cancel-close-btn {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cancel-close-btn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
 }

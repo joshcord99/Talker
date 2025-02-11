@@ -45,3 +45,40 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const UPDATE_USER_EMOTION = gql`
+  mutation UpdateUserEmotion($userId: ID!, $userEmotion: String!) {
+    updateUserEmotion(userId: $userId, userEmotion: $userEmotion) {
+      _id
+      userEmotion
+    }
+  }
+`;
+
+export const CREATE_DAILY_LOG = gql`
+  mutation CreateDailyLog($userId: ID!, $emotion: String!, $notes: String) {
+    createDailyLog(userId: $userId, emotion: $emotion, notes: $notes) {
+      _id
+      emotion
+      logDate
+      notes
+    }
+  }
+`;
+
+export const HAS_LOGGED_TODAY = gql`
+  query HasLoggedToday($userId: ID!) {
+    hasLoggedToday(userId: $userId)
+  }
+`;
+
+export const GET_DAILY_LOGS = gql`
+  query GetDailyLogs($userId: ID!) {
+    getDailyLogs(userId: $userId) {
+      _id
+      emotion
+      logDate
+      notes
+    }
+  }
+`;

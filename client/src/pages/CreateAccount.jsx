@@ -188,7 +188,7 @@ const CreateAccount = () => {
         </div>
 
         <div className="form-group">
-          <label className="form-label">Goal</label>
+          <label className="form-label">Current Emotion</label>
           <input
             className="form-input"
             type="text"

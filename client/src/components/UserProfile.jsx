@@ -1,6 +1,26 @@
+import { useState } from "react";
+import { useMutation } from "@apollo/client";
 import "../styles/personal.css";
 
-function UserProfile({ user }) {
+function UserProfile({ user, onEmotionChange }) {
+  const emotions = [
+    "Happy",
+    "Sad",
+    "Anxious",
+    "Stressed",
+    "Excited",
+    "Calm",
+    "Angry",
+    "Confused",
+    "Hopeful",
+    "Frustrated",
+    "Grateful",
+    "Lonely",
+    "Confident",
+    "Overwhelmed",
+    "Peaceful",
+  ];
+
   if (!user) {
     return null;
   }
@@ -44,8 +64,10 @@ function UserProfile({ user }) {
           <span>{user.gender || "Not provided"}</span>
         </div>
         <div className="profile-item">
-          <label>Current Goal:</label>
-          <span>{user.userEmotion || "Not provided"}</span>
+          <label>Current Emotion:</label>
+          <span className="current-emotion">
+            {user.userEmotion || "Not set"}
+          </span>
         </div>
       </div>
     </div>
