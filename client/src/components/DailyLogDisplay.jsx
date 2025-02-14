@@ -32,6 +32,27 @@ function DailyLogDisplay({ userId }) {
     });
   };
 
+  const getDayOfWeek = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+    });
+  };
+
+  const groupLogsByDay = (logs) => {
+    const grouped = {};
+    logs.forEach((log) => {
+      const dayKey = new Date(log.logDate).toDateString();
+      if (!grouped[dayKey]) {
+        grouped[dayKey] = [];
+      }
+      grouped[dayKey].push(log);
+    });
+    return grouped;
+  };
+
+  const groupedLogs = groupLogsByDay(logs);
+
   return (
     <div className="daily-logs-container">
       <h3>Your Daily Emotion Log</h3>
@@ -41,20 +62,27 @@ function DailyLogDisplay({ userId }) {
         </p>
       ) : (
         <div className="logs-list">
-          {logs.map((log) => (
-            <div key={log._id} className="log-item">
-              <div className="log-header">
-                <span className="log-date">{formatDate(log.logDate)}</span>
-                <span className="log-time">{formatTime(log.logDate)}</span>
-              </div>
-              <div className="log-emotion">
-                <strong>Emotion:</strong> {log.emotion}
-              </div>
-              {log.notes && (
-                <div className="log-notes">
-                  <strong>Notes:</strong> {log.notes}
+          {Object.entries(groupedLogs).map(([dayKey, dayLogs]) => (
+            <div key={dayKey} className="day-group">
+              <h4 className="day-heading">
+                {getDayOfWeek(dayLogs[0].logDate)}
+              </h4>
+              {dayLogs.map((log) => (
+                <div key={log._id} className="log-item">
+                  <div className="log-header">
+                    <span className="log-date">{formatDate(log.logDate)}</span>
+                    <span className="log-time">{formatTime(log.logDate)}</span>
+                  </div>
+                  <div className="log-emotion">
+                    <strong>Emotion:</strong> {log.emotion}
+                  </div>
+                  {log.notes && (
+                    <div className="log-notes">
+                      <strong>Notes:</strong> {log.notes}
+                    </div>
+                  )}
                 </div>
-              )}
+              ))}
             </div>
           ))}
         </div>

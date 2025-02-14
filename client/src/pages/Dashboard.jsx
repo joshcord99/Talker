@@ -88,7 +88,10 @@ function Dashboard() {
               </button>
             </div>
           ) : (
-            <ConversationBox onClose={() => setShowChat(false)} />
+            <ConversationBox
+              onClose={() => setShowChat(false)}
+              onEndConversation={() => setShowDailyLogModal(true)}
+            />
           )}
         </div>
         <div className="logs-section">

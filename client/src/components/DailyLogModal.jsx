@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { CREATE_DAILY_LOG } from "../utils/mutations";
+import { CREATE_DAILY_LOG, UPDATE_USER_EMOTION } from "../utils/mutations";
 
 function DailyLogModal({ user, onClose, onEmotionUpdate }) {
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const [notes, setNotes] = useState("");
   const [createDailyLog] = useMutation(CREATE_DAILY_LOG);
+  const [updateUserEmotion] = useMutation(UPDATE_USER_EMOTION);
 
   const emotions = [
     "Happy",
@@ -40,7 +41,8 @@ function DailyLogModal({ user, onClose, onEmotionUpdate }) {
         notes,
       });
 
-      const result = await createDailyLog({
+      // Create daily log
+      const dailyLogResult = await createDailyLog({
         variables: {
           userId: user._id,
           emotion: selectedEmotion,
@@ -48,7 +50,17 @@ function DailyLogModal({ user, onClose, onEmotionUpdate }) {
         },
       });
 
-      console.log("Daily log created successfully:", result);
+      console.log("Daily log created successfully:", dailyLogResult);
+
+      // Update user's emotion in database
+      const emotionUpdateResult = await updateUserEmotion({
+        variables: {
+          userId: user._id,
+          userEmotion: selectedEmotion,
+        },
+      });
+
+      console.log("User emotion updated successfully:", emotionUpdateResult);
 
       // Update local user state
       const updatedUser = { ...user, userEmotion: selectedEmotion };
@@ -60,7 +72,7 @@ function DailyLogModal({ user, onClose, onEmotionUpdate }) {
       // Close the modal
       onClose();
     } catch (error) {
-      console.error("Error creating daily log:", error);
+      console.error("Error creating daily log or updating emotion:", error);
       alert("Failed to save your daily log. Please try again.");
       // Still close the modal even if there's an error
       onClose();
@@ -73,8 +85,7 @@ function DailyLogModal({ user, onClose, onEmotionUpdate }) {
         <button onClick={onClose} className="modal-close-btn" type="button">
           ×
         </button>
-        <h2>How are you feeling today, {user.firstName}?</h2>
-        <p>Let's start your day by checking in with yourself.</p>
+        <h2>Emotion Check-In, {user.firstName}?</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">

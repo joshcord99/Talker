@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import "../styles/personal.css";
 
-function ConversationBox({ onClose }) {
+function ConversationBox({ onClose, onEndConversation }) {
   const [conversation, setConversation] = useState([]);
   const [userMessage, setUserMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -92,6 +92,12 @@ function ConversationBox({ onClose }) {
     setShowCloseConfirm(false);
   };
 
+  const handleEndConversation = () => {
+    if (onEndConversation) {
+      onEndConversation();
+    }
+  };
+
   return (
     <div className="conversation-container">
       <div className="chat-header">
@@ -140,6 +146,13 @@ function ConversationBox({ onClose }) {
           className="send-button"
         >
           Send
+        </button>
+        <button
+          type="button"
+          onClick={handleEndConversation}
+          className="end-conversation-button"
+        >
+          End Conversation
         </button>
       </form>
 
